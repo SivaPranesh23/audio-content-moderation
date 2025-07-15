@@ -236,5 +236,5 @@ def main(video_path):
     print("\n✅ Processing completed successfully!")
 
 if __name__ == "__main__":
-    video_file = r"D:\Pycham_Python1\video_sample\samplevideo-2.mp4"
+    video_file = r"video path"
     main(video_file)
