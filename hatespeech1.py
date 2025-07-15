@@ -5,7 +5,7 @@ import os
 import wave
 import requests
 
-PERSPECTIVE_API_KEY = "AIzaSyBKBzET1PewHdqlkmEep_ZTy19oBOHYi4k"  # Replace with your API key
+PERSPECTIVE_API_KEY = "...."  # Replace with your API key
 PERSPECTIVE_URL = "https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze"
 
 # Extract audio from video
@@ -60,11 +60,7 @@ def get_perspective_toxicity(text, lang):
     # Prepare API request
     data = {"comment": {"text": text}, "languages": [lang], "requestedAttributes": requested_attributes}
 
-    # # Print the request details (for debugging)
-    # print(f"\n🔹 Sending API request to Perspective API with the following data:")
-    # print(f"Text: {text}")
-    # print(f"Language: {lang}")
-    # print(f"Attributes: {requested_attributes}")
+    
 
     response = requests.post(f"{PERSPECTIVE_URL}?key={PERSPECTIVE_API_KEY}", json=data)
 
@@ -91,34 +87,7 @@ import langid
 
 
 
-# # Analyze hate speech with profanity - with per-sentence language detection
-# def analyze_hate_speech(transcriptions):
-#     hate_speech_sentences = []
-#     word_intervals = {}
-#
-#     for segment in transcriptions:
-#         sentence = segment["text"]
-#         start_time = segment["start"]
-#         end_time = segment["end"]
-#
-#         detected_lang, _ = langid.classify(sentence)
-#
-#         print(f"\n🔹 Detected language for sentence: \"{sentence[:30]}...\" → {detected_lang}")
-#
-#         toxicity_scores = get_perspective_toxicity(sentence, detected_lang)
-#
-#         # Print the scores for each sentence
-#         print(f"\n🔹 Sentence: \"{sentence}\" ({start_time:.2f}s - {end_time:.2f}s)")
-#         for attr in ["IDENTITY_ATTACK", "SEVERE_TOXICITY", "TOXICITY", "INSULT", "THREAT", "PROFANITY"]:
-#             score = toxicity_scores.get(attr, 0)
-#             print(f"{attr}: {score * 100:.2f}%")
-#
-#         if any(toxicity_scores.get(attr, 0) > 0.4 for attr in
-#                ["IDENTITY_ATTACK", "SEVERE_TOXICITY", "TOXICITY", "INSULT", "THREAT", "PROFANITY"]):
-#             hate_speech_sentences.append((sentence, start_time, end_time))
-#             word_intervals[sentence] = [(start_time, end_time)]
-#
-#     return hate_speech_sentences, word_intervals
+
 
 
 
